@@ -1,14 +1,14 @@
 const express = require('express');
-const accountant = require('./entities/accountant');
-const admin = require('./entities/admin');
-const customer = require('./entities/customer');
-const plumber = require('./entities/plumber');
-const salesRepresentative = require('./entities/salesRepresentative');
-const schemeCoordinator = require('./entities/schemeCoordinator');
-const storesClerk = require('./entities/storesClerk');
-const supervisor = require('./entities/supervisor');
-const user = require('./entities/user');
-const home = require('./entities/home');
+const accountant = require('./routes/accountant');
+const admin = require('./routes/admin');
+const customer = require('./routes/customer');
+const plumber = require('./routes/plumber');
+const salesRepresentative = require('./routes/salesRepresentative');
+const schemeCoordinator = require('./routes/schemeCoordinator');
+const storesClerk = require('./routes/storesClerk');
+const supervisor = require('./routes/supervisor');
+const user = require('./routes/user');
+const home = require('./routes/home');
 
 const app = express();
 

@@ -19,6 +19,8 @@
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
+    "password-hash": "^1.2.2",
+    "redux": "^4.0.5",
     "sequelize": "^6.3.5",
     "socket.io": "^2.3.0",
     "sqlite3": "^5.0.0",
