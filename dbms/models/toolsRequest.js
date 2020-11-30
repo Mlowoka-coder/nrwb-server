@@ -21,7 +21,7 @@ const toolsRequest = sequelize.define('toolsRequest',{
     },
     storesClerkID:{
         type:DataTypes.STRING,
-        allowNull:false,
+        defaultValue:null,
         references:{
             model:storesClerk,
             key:'employeeID',
@@ -38,6 +38,10 @@ const toolsRequest = sequelize.define('toolsRequest',{
     status:{
         type:DataTypes.STRING,
         defaultValue:'Ungranted'
+    },
+    viewStatus:{
+        type:DataTypes.STRING,
+        defaultValue:'Unviewed'
     }
 },
 {

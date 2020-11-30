@@ -6,7 +6,6 @@ const plumber = require('./routes/plumber');
 const salesRepresentative = require('./routes/salesRepresentative');
 const schemeCoordinator = require('./routes/schemeCoordinator');
 const storesClerk = require('./routes/storesClerk');
-const supervisor = require('./routes/supervisor');
 const user = require('./routes/user');
 const home = require('./routes/home');
 
@@ -19,7 +18,6 @@ app.use('/plumber',plumber);
 app.use('/salesRepresentative',salesRepresentative);
 app.use('/schemeCoordinator',schemeCoordinator);
 app.use('/storesClerk',storesClerk);
-app.use('/supervisor',supervisor);
 app.use('/user',user);
 app.use('/',home);
 

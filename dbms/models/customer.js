@@ -1,6 +1,6 @@
 const {DataTypes,references} =require('sequelize');
 const sequelize = require('../connection/connection');
-const nationalID = require('./nationalID');
+const user = require('./nationalID');
 
 const customer = sequelize.define('customer',{
     customerID:{
@@ -9,11 +9,11 @@ const customer = sequelize.define('customer',{
         primaryKey:true,
         autoIncrement:true,
     },
-    natID:{
+    userID:{
         type:DataTypes.STRING,
         allowNull:false,
         references:{
-            model:nationalID,
+            model:user,
             key:'id',
         }
     },
@@ -21,6 +21,10 @@ const customer = sequelize.define('customer',{
         type:DataTypes.STRING,
         defaultValue:'active'
     },
+    balance:{
+        type:DataTypes.DOUBLE,
+        allowNull:false
+    }
 });
 
 module.exports=customer;

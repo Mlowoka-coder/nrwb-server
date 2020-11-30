@@ -1,13 +1,17 @@
-const report = require('../../orm/models/faultReport')
+const express = require('express')
+const faultReport = require('../../dbms/models/faultReport')
 
-const reportFunc = ({data})=>{
-    const reports = report.findAll({
+const router = express.Router({mergeParams:true})
+const jsonParser = express.json()
+
+router.get('/',jsonParser,(req,res)=>{
+    faultReport.findAll({
         where:{
-            reporterID:data.id
+            reporterID
         }
-    })
+    }).then((faultReportRows)=>{
+        res.status(200).send(faultReportRows)
+    }).catch(error => res.status(200).send(error))
+})
 
-    return reports
-}
-
-module.exports = reportFunc
+module.exports = router

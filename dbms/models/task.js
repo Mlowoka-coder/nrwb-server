@@ -1,6 +1,5 @@
-const {DataTypes,references} =require('sequelize');
+const {DataTypes} =require('sequelize');
 const sequelize = require('../connection/connection');
-const plumber = require('./plumber');
 
 const task = sequelize.define('task',{
     id:{
@@ -9,13 +8,13 @@ const task = sequelize.define('task',{
         primaryKey:true,
         autoIncrement:true,
     },
-    plumberID:{
+    employeeID:{
         type:DataTypes.STRING,
         allowNull:false,
-        references:{
-            model:plumber,
-            key:'employeeID',
-        },
+    },
+    employeePosition:{
+        type:DataTypes.STRING,
+        allowNull:false,
     },
     dueDate:{
         type:DataTypes.DATEONLY,
@@ -25,18 +24,25 @@ const task = sequelize.define('task',{
         type:DataTypes.STRING,
         defaultValue:'Unaccomplished'
     },
+    read:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
+    },
     type:{
         type:DataTypes.STRING,
         allowNull:false,
     },
     typeID:{
         type:DataTypes.STRING,
-        allowNull:false,
     },
     counter:{
         type:DataTypes.INTEGER,
         defaultValue:0
     },
+    lastCounter:{
+        type:DataTypes.INTEGER,
+        defaultValue:0
+    }
 });
 
 module.exports=task;

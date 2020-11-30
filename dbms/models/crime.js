@@ -17,6 +17,10 @@ const crime = sequelize.define('crime',{
             key:'id',
         },
     },
+    personel:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
     crime:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -27,7 +31,7 @@ const crime = sequelize.define('crime',{
             model:user,
             key:'id',
         },
-        defaultValue:'null'
+        defaultValue:null
     },
     reporterID:{
         type:DataTypes.STRING,
@@ -37,10 +41,14 @@ const crime = sequelize.define('crime',{
         },
         allowNull:false,
     },
+    zone:{
+        type:DataTypes.STRING,
+    }
+    ,
     status:{
         type:DataTypes.STRING,
         defaultValue:'Unapproved',
     }
 });
 
-module.exports=crime;
+module.exports = crime;

@@ -7,31 +7,38 @@ const meter = sequelize.define('meter',{
         type:DataTypes.INTEGER,
         allowNull:false,
         primaryKey:true,
-        autoIncrement:true,
     },
     owner:{
         type:DataTypes.STRING,
-        allowNull:false,
         references:{
             model:customer,
             key:'id',
         },
+        defaultValue:null
     },
     balance:{
         type:DataTypes.DOUBLE,
-        allowNull:false,
+        defaultValue:0.0
     },
     lastReading:{
         type:DataTypes.STRING,
-        allowNull:false,
+        defaultValue:null
+    },
+    class:{
+        type:DataTypes.STRING,
+        defaultValue:null
+    },
+    lastReadMonth:{
+        type:DataTypes.STRING,
+        defaultValue:null
     },
     status:{
         type:DataTypes.STRING,
         defaultValue:'Active'
     },
-    area:{
+    zone:{
         type:DataTypes.STRING,
-        allowNull:false,
+        defaultValue:null
     },
 });
 

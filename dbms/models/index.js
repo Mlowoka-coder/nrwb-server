@@ -24,6 +24,8 @@ const taskReport = require('./taskReport')
 const toolsList = require('./toolsList')
 const toolsRequest = require('./toolsRequest')
 const user = require('./user')
+const notification = require('./notification')
+const store = require('./store')
 
 const initializer = (alter)=>{
     accountant.sync(alter)
@@ -52,6 +54,8 @@ const initializer = (alter)=>{
     toolsList.sync(alter)
     toolsRequest.sync(alter)
     user.sync(alter)
+    store.sync(alter)
+    notification.sync(alter)
 }
 
 initializer({force:true})

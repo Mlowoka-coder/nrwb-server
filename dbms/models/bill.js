@@ -15,7 +15,7 @@ const bill = sequelize.define('bill',{
         allowNull:false,
         references:{
             model:user,
-            key:'id',
+            key:'accID',
         },
         defaultValue:'null'
     },
@@ -39,10 +39,6 @@ const bill = sequelize.define('bill',{
     tariffRate:{
         type:DataTypes.INTEGER,
         allowNull:false,
-        references:{
-            model:tariff,
-            key:'id'
-        }
     }
 },
 {

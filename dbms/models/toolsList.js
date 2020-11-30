@@ -8,10 +8,6 @@ const toolsList = sequelize.define('toolsList',{
         primaryKey:true,
         autoIncrement:true,
     },
-    requestID:{
-        type:DataTypes.STRING,
-        allowNull:false,
-    },
     pipeSize:{
         type:DataTypes.INTEGER,
         allowNull:false

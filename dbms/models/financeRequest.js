@@ -12,7 +12,7 @@ const financeRequest = sequelize.define('financeRequest',{
     },
     accountantID:{
         type:DataTypes.STRING,
-        allowNull:false,
+        defaultValue:null,
         references:{
             model:accountant,
             key:'employeeID',
@@ -33,6 +33,10 @@ const financeRequest = sequelize.define('financeRequest',{
     status:{
         type:DataTypes.STRING,
         defaultValue:'Unapproved'
+    },
+    viewStatus:{
+        type:DataTypes.STRING,
+        defaultValue:'Unviewed'
     }
 });
 

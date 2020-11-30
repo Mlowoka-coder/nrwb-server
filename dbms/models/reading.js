@@ -1,7 +1,6 @@
-const {DataTypes,references} =require('sequelize');
-const sequelize = require('../connection/connection');
-const nationalID = require('./nationalID');
-const meter = require('./meter');
+const {DataTypes,references} =require('sequelize')
+const sequelize = require('../connection/connection')
+const meter = require('./meter')
 
 const reading = sequelize.define('reading',{
     id:{
@@ -13,10 +12,6 @@ const reading = sequelize.define('reading',{
     salesRepresentativeID:{
         type:DataTypes.STRING,
         allowNull:false,
-        references:{
-            model:nationalID,
-            key:'id',
-        },
     },
     meterID:{
         type:DataTypes.STRING,
@@ -38,6 +33,13 @@ const reading = sequelize.define('reading',{
         type:DataTypes.STRING,
         allowNull:'Uncalculated'
     },
+    zone:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    customerID:{
+        type:DataTypes.STRING
+    }
 });
 
 module.exports=reading;

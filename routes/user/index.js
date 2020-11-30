@@ -1,24 +1,16 @@
 const express = require('express')
-const jsonParser = express.json()
-const router = express.Router()
+const apply = require('../../functionality/user/apply')
+const applications = require('../../functionality/user/applications')
+const report = require('../../functionality/user/report')
+const reports = require('../../functionality/user/reports')
+const notifications = require('../../functionality/user/notifications')
 
-router.post('/apply',jsonParser,(req,res)=>{
-    console.log('Request to apply')
-})
+const app = express()
 
-router.get('/applications',jsonParser,(req,res)=>{
-    console.log('Request to applications')
-})
+app.use('/apply',apply)
+app.use('/applications',applications)
+app.use('/report',report)
+app.use('/reports',reports)
+app.use('/notifications',notifications)
 
-router.post('/report',jsonParser,(req,res)=>{
-    console.log('Request to report')
-})
-
-router.get('/reports',jsonParser,(req,res)=>{
-    console.log('Request to reports')
-})
-
-router.get('/notifications',jsonParser,(req,res)=>{
-    console.log('Request for notifications',req.body)
-})
-module.exports = router
+module.exports = app

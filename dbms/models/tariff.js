@@ -1,5 +1,6 @@
 const {DataTypes,references} =require('sequelize');
 const sequelize = require('../connection/connection');
+const accountant = require('./accountant');
 const nationalID = require('./nationalID');
 
 const task = sequelize.define('task',{
@@ -16,23 +17,19 @@ const task = sequelize.define('task',{
     authorisorID:{
         type:DataTypes.STRING,
         allowNull:false,
-        references:{
-            model:nationalID,
-            key:'id',
-        },
     },
     witnessID:{
         type:DataTypes.STRING,
         allowNull:false,
-        references:{
-            model:nationalID,
-            key:'id'
-        }
     },
     rate:{
         type:DataTypes.DOUBLE,
         allowNull:false,
     },
+    status:{
+        type:DataTypes.STRING,
+        allowNull:false
+    }
 });
 
 module.exports=task;

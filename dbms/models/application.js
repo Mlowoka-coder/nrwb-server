@@ -10,12 +10,12 @@ const application = sequelize.define('application',{
         primaryKey:true,
         autoIncrement:true,
     },
-    natID:{
+    accID:{
         type:DataTypes.STRING,
         allowNull:false,
         references:{
             model:user,
-            key:'id',
+            key:'accID',
         }
     },
     zone:{
@@ -42,9 +42,13 @@ const application = sequelize.define('application',{
             key:'id'
         }
     },
+    type:{
+        type:DataTypes.STRING,
+        defaultValue:'New Connection'
+    },
     status:{
         type:DataTypes.STRING,
-        defaultValue:'Unapproved'
+        defaultValue:'Measure'
     }
 },
 {

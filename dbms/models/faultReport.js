@@ -1,6 +1,6 @@
 const {DataTypes,references} =require('sequelize');
 const sequelize = require('../connection/connection');
-const plumber = require('./plumber');
+const customer = require('./customer');
 const plumberTask = require('./task');
 
 const faultReport = sequelize.define('faultReport',{
@@ -14,9 +14,25 @@ const faultReport = sequelize.define('faultReport',{
         type:DataTypes.STRING,
         allowNull:false,
         references:{
-            model:plumber,
-            key:'employeeID',
+            model:customer,
+            key:'customerID',
         },
+    },
+    type:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+    time:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+    contact:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+    reminder:{
+        type:DataTypes.STRING,
+        allowNull:false,
     },
     taskID:{
         type:DataTypes.STRING,

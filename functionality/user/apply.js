@@ -1,47 +1,47 @@
-const application = require('../../orm/models/application')
-const task = require('../../orm/models/task')
-const plumber = require('../../orm/models/plumber')
-const dateIncrement = require('../../functionality/date/dateIncrement')
+const express = require('express')
+const application = require('../../dbms/models/application')
+const plumber = require('../../dbms/models/plumber')
+const task = require('../../dbms/models/task')
+const dateIncrement = require('../date/dateIncrement')
+const lodash = require('lodash')
 
-const applicationFunc = ({natID,longtude,latitude,purpose})=>{
-    const created = application.create({
-        natID,longtude,latitude,purpose
-    })
+const router = express.Router({mergeParams:true})
+const jsonParser = express.json()
 
-    return created
-}
+router.post('/', jsonParser,(req,res)=>{
 
-const taskFunc = ({plumberID,dueDate,type,typeID})=>{
-    const created = task.create({
-        plumberID,dueDate,type,typeID
-    })
+    const accID = req.body.accID
+    const zone = lodash.upperFirst(lodash.toLower(req.body.location))
+    const purpose = lodash.upperFirst(lodash.toLower(req.body.purpose))
+    const latitude = lodash.upperFirst(lodash.toLower(req.body.latitude))
+    const longtude = lodash.upperFirst(lodash.toLower(req.body.longtude))
 
-    return created
-}
+    application.create({
+        accID,zone,purpose,latitude,longtude
+    }).then((applicationRow)=>{
+        if(applicationRow != null){
+            plumber.findOne({
+                where:{
+                    zone
+                }
+            }).then((plumberRow)=>{
+                
 
-const apply = ({natID,purpose,longtude,latitude,zone})=>{
-    const plumberRecord = plumber.findOne({
-        where:{
-            zone
-        },
-        attributes:['employeeID'],
-    })
-
-    const dueDate = dateIncrement(2)
-
-    const plumberID = plumberRecord.employeeID
-
-    const applicationRecord = applicationFunc({natID,longtude,latitude,purpose})
-
-    if(applicationRecord){
-        const typeID = applicationRecord.id
-        if(taskFunc({plumberID,dueDate,type:'New Connection',typeID}))        
-            return 'success'
-    }else return 'error'
-
-    
+                task.create({
+                    employeeID:plumberRow.employeeID,
+                    employeePosition:'Plumber',
+                    dueDate:dateIncrement(2),
+                    type:'Measurement',
+                    typeID:applicationRow.id
+                }).then((taskRow)=>{
+                    res.status(200).send(taskRow)
+                }).catch(error =>res.status(200).send(error))
 
 
-}
+            })
+        }
+        res.status(200).send('Error in creating application')
+    }).catch((error)=>res.status(200).send(error))
+})
 
-module.exports = apply
+module.exports = router
